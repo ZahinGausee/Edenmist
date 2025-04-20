@@ -16,11 +16,10 @@ import { Button } from "@/src/components/ui/button";
 import { cn } from "@/src/lib/utils";
 import { IconBrandFacebook, IconBrandGoogle } from "@tabler/icons-react";
 import { useRouter } from "next/navigation";
-import { signIn } from "next-auth/react";
+import { signIn, signOut } from "next-auth/react";
 import { useToast } from "@/hooks/use-toast";
 import GoogleSignInButton from "@/src/components/ui/GoogleSignInButton";
 import { useCustomSession } from "@/src/context/AuthContext";
-import TwitterSignInButton from "@/src/components/ui/TwitterSignInButton";
 
 
 const FormSchema = z
@@ -100,9 +99,9 @@ export function SignUpForm() {
           variant: "destructive",
         });
       } else {
-        router.back();
-        setTimeout(() => window.location.reload(), 300);
-      }
+          router.push("/shop");
+          setTimeout(() => window.location.reload(), 300);
+      }      
 
     } catch (error) {
       toast({
@@ -242,7 +241,6 @@ export function SignUpForm() {
             <GoogleSignInButton disabled={isUserAuthenticated}>
               Continue with Google
             </GoogleSignInButton>
-            <TwitterSignInButton disabled={isUserAuthenticated}>Continue with Twitter</TwitterSignInButton>
           </div>
         </form>
       </Form>

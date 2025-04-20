@@ -118,25 +118,28 @@ export default function ProductOverview({ productData, userData }) {
             </div>
 
             {/* Buy Now Button or Currently Unavailable */}
-            {userData ? (
-  selectedSize?.inStock ? (
-    <Link
-      href={`/product/${productData.product_id}/purchase`}
-      className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-    >
-      Buy Now
-    </Link>
-  ) : (
-    <button
-      disabled
-      className="mt-10 flex w-full items-center justify-center rounded-md border border-gray-300 bg-gray-400 px-8 py-3 text-base font-medium text-gray-700 cursor-not-allowed"
-    >
-      Currently Unavailable
-    </button>
-  )
-) : (
-  <DialogBox />
-)}
+            {selectedSize ? (
+              selectedSize.inStock ? (
+                userData ? (
+                  <Link
+                    href={`/product/${productData.product_id}/purchase`}
+                    className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                  >
+                    Buy Now
+                  </Link>
+                ) : (
+                  <DialogBox />
+                )
+              ) : (
+                <button
+                  disabled
+                  className="mt-10 flex w-full items-center justify-center rounded-md border border-gray-300 bg-gray-400 px-8 py-3 text-base font-medium text-gray-700 cursor-not-allowed"
+                >
+                  Currently Unavailable
+                </button>
+              )
+            ) : null}
+
 
           </div>
 

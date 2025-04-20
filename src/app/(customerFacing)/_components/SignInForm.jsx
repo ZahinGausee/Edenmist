@@ -19,7 +19,6 @@ import { Input } from "@/src/components/ui/input";
 import { Button } from "@/src/components/ui/button";
 import GoogleSignInButton from "@/src/components/ui/GoogleSignInButton";
 import { useCustomSession } from "@/src/context/AuthContext";
-import TwitterSignInButton from "@/src/components/ui/TwitterSignInButton";
 
 const FormSchema = z.object({
   email: z.string().min(1, "Email is required").email("Invalid email"),
@@ -71,7 +70,7 @@ export function SignInForm() { // Get user session
           variant: "destructive",
         });
       } else {
-        router.back();
+        router.push("/shop");
         setTimeout(() => window.location.reload(), 300);
       }
     } catch (error) {
@@ -158,7 +157,6 @@ export function SignInForm() { // Get user session
             <GoogleSignInButton disabled={isUserAuthenticated}>
               Continue with Google
             </GoogleSignInButton>
-            <TwitterSignInButton disabled={isUserAuthenticated}>Continue with Twitter</TwitterSignInButton>
           </div>
       </Form>
     </div>
